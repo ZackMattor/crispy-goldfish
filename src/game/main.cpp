@@ -9,8 +9,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_color.h>
 
-#include "Globals.h"
+#include "globals.h"
 
 bool keys[255] = {false};
 
@@ -124,7 +125,6 @@ int main(int argc, char *argv[])
 
         if(redraw && al_is_event_queue_empty(event_queue))
         {
-            //cout << "Drawing";
             redraw = false;
             Draw();
 
@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
 void Draw()
 {
     qDebug() << "Draw";
+    al_draw_line(0, 0, 100, 600, al_color_html("#000000"), 5);
 }
 
 void Update()

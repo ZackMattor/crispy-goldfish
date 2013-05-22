@@ -14,10 +14,14 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-LIBS += -lallegro -lallegro_ttf -lallegro_font -lallegro_primitives -lallegro_ttf
+LIBS += -lallegro -lallegro_ttf -lallegro_font -lallegro_primitives -lallegro_ttf -lallegro_color
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    button.cpp \
+    game_menu.cpp
 
 HEADERS += \
-    Globals.h
+    button.h \
+    game_menu.h \
+    globals.h
