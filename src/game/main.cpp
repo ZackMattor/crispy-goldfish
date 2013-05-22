@@ -86,8 +86,10 @@ int main(int argc, char *argv[])
     al_register_event_source(event_queue, (ALLEGRO_EVENT_SOURCE*)al_get_display_event_source(display));
     al_register_event_source(event_queue, (ALLEGRO_EVENT_SOURCE*)display);
 
+    //Starts up out timer which will tick in the event loop and run our update function
     al_start_timer(timer);
 
+    //Main game loop!
     while(gameState != CLOSE)
     {
         QCoreApplication::processEvents();
@@ -144,6 +146,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    //Stops all sounds
     //soundPlayer->stopAll();
 
     return 1;
