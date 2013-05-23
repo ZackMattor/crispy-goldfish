@@ -25,3 +25,6 @@ HEADERS += \
     button.h \
     game_menu.h \
     globals.h
+
+OTHER_FILES += \
+    arial.ttf

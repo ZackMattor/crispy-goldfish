@@ -2,6 +2,7 @@
 #define BUTTON_H
 
 #include <QtCore/QString>
+#include <QDebug>
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -12,20 +13,19 @@ class Button
 {
 public:
     Button();
-    Button(int x, int y, int width, int height, ALLEGRO_FONT *buttonFont, ALLEGRO_COLOR inactiveColor, ALLEGRO_COLOR activeColor, QString title);
+    Button(int x, int y, int width, int height, ALLEGRO_FONT *buttonFont, ALLEGRO_COLOR inactiveColor, ALLEGRO_COLOR activeColor, ALLEGRO_COLOR textColor, ALLEGRO_COLOR borderColor, QString title, int value);
 
     //Setters
     void setRectangle(int x, int y, int width, int height);
     void setValue(int value);
     void setTitle(QString title);
-    void setColors(ALLEGRO_COLOR inactiveColor, ALLEGRO_COLOR activeColor, ALLEGRO_COLOR m_textColor, ALLEGRO_COLOR m_borderColor);
+    void setColors(ALLEGRO_COLOR inactiveColor, ALLEGRO_COLOR activeColor, ALLEGRO_COLOR textColor, ALLEGRO_COLOR borderColor);
 
     void toggleActive();
     void setActive(bool isActive);
 
-
     //Getters
-
+    int getValue();
 
     //Action Methods
     void Draw();
@@ -38,7 +38,11 @@ private:
     int m_yPosition;
     int m_buttonHeight;
     int m_buttonWidth;
-    bool m_isActive = false;
+    int m_value;
+
+    int m_prevClick;
+
+    bool m_isActive;
     QString m_title;
 
     ALLEGRO_FONT *m_buttonFont;

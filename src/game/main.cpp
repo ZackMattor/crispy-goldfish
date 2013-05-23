@@ -12,10 +12,14 @@
 #include <allegro5/allegro_color.h>
 
 #include "globals.h"
+#include "game_menu.h"
 
 bool keys[255] = {false};
 
 int gameState = LOADING;
+
+//State Instances
+GameMenu *mainMenu;
 
 ALLEGRO_MOUSE_EVENT mouse;
 ALLEGRO_DISPLAY *display = NULL;
@@ -156,11 +160,60 @@ int main(int argc, char *argv[])
 
 void Draw()
 {
-    qDebug() << "Draw";
-    al_draw_line(0, 0, 100, 600, al_color_html("#000000"), 5);
+    switch(gameState)
+    {
+    case LOADING:
+
+        break;
+    case MENU:
+        mainMenu->Draw();
+        break;
+    case ABOUT:
+
+        break;
+    case GAME:
+
+        break;
+    case CLOSE:
+
+        break;
+    case TESTING:
+
+        break;
+    }
+
+    al_draw_line(0, 0, mouse.x, mouse.y, al_color_html("#000000"), 5);
 }
 
 void Update()
 {
-   qDebug() << "Tick";
+    switch(gameState)
+    {
+    case LOADING:
+        qDebug() << "Entering Loading State (Then off to MENU state)";
+        mainMenu = new GameMenu();
+        gameState = MENU;
+        break;
+    case MENU:
+    {
+        //qDebug() << "In Menu State";
+        int menuValue = mainMenu->Update(keys, &mouse);
+
+        if(menuValue != -1)
+            gameState = menuValue;
+    }
+        break;
+    case ABOUT:
+
+        break;
+    case GAME:
+
+        break;
+    case CLOSE:
+
+        break;
+    case TESTING:
+
+        break;
+    }
 }
