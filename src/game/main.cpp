@@ -21,7 +21,7 @@ int gameState = LOADING;
 //State Instances
 GameMenu *mainMenu;
 
-ALLEGRO_MOUSE_EVENT mouse;
+ALLEGRO_MOUSE_STATE mouse;
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_BITMAP *background = NULL;
 ALLEGRO_FONT *listFont;
@@ -123,7 +123,8 @@ int main(int argc, char *argv[])
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
             case ALLEGRO_EVENT_MOUSE_AXES:
-                mouse = ev.mouse;
+                //mouse = ev.mouse;
+                al_get_mouse_state(&mouse);
             break;
         }
 
@@ -167,6 +168,7 @@ void Draw()
         break;
     case MENU:
         mainMenu->Draw();
+        gameState = MENU;
         break;
     case ABOUT:
 
@@ -182,7 +184,7 @@ void Draw()
         break;
     }
 
-    al_draw_line(0, 0, mouse.x, mouse.y, al_color_html("#000000"), 5);
+    //al_draw_line(0, 0, mouse.x, mouse.y, al_color_html("#000000"), 5);
 }
 
 void Update()
@@ -204,16 +206,16 @@ void Update()
     }
         break;
     case ABOUT:
-
+        qDebug() << "In the ABOUT state";
         break;
     case GAME:
-
+        qDebug() << "In the GAME state";
         break;
     case CLOSE:
-
+        qDebug() << "In the CLOSE state";
         break;
     case TESTING:
-
+        qDebug() << "In the TESTING state";
         break;
     }
 }

@@ -14,7 +14,7 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-LIBS += -lallegro -lallegro_ttf -lallegro_font -lallegro_primitives -lallegro_ttf -lallegro_color
+LIBS += -lallegro -lallegro_ttf -lallegro_font -lallegro_primitives -lallegro_ttf -lallegro_color -lstdc++
 
 
 SOURCES += main.cpp \

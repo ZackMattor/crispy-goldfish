@@ -14,6 +14,12 @@ Button::Button(int x, int y, int width, int height, ALLEGRO_FONT *buttonFont, AL
     setColors(inactiveColor, activeColor, textColor, borderColor);
 
     setValue(value);
+
+    m_buttonFont = buttonFont;
+
+    if (!m_buttonFont){
+        qDebug() << "Could not load font";
+    }
     qDebug() << "Created Button";
     this->m_prevClick = 0;
 }
@@ -64,21 +70,26 @@ int Button::getValue()
 void Button::Draw()
 {
     al_draw_rectangle(m_xPosition, m_yPosition, m_xPosition + m_buttonWidth, m_yPosition + m_buttonHeight, m_borderColor, 2);
+
+
+    int text_x = m_xPosition + (m_buttonWidth / 2);
+    int text_y = m_yPosition + (m_buttonHeight / 2) - 10;
+
+    al_draw_text(m_buttonFont, m_borderColor, text_x, text_y, ALLEGRO_ALIGN_CENTER, m_title.toLocal8Bit().data());
 }
 
 //update returns if clicked
-bool Button::Update(ALLEGRO_MOUSE_EVENT *mouse)
+bool Button::Update(ALLEGRO_MOUSE_STATE *mouse)
 {
     m_isActive = false;
 
-    qDebug() << m_prevClick;
     if(mouse->x > m_xPosition && mouse->x < m_yPosition + m_buttonWidth)
     {
         if(mouse->y > m_yPosition && mouse->y < m_yPosition + m_buttonHeight)
         {
             m_isActive = true;
 
-            if(mouse->button & 1)
+            if(al_mouse_button_down(mouse, 1))
             {
                 if(m_prevClick == 1)
                 {

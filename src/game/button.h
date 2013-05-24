@@ -31,7 +31,7 @@ public:
     void Draw();
 
     //update returns if clicked
-    bool Update(ALLEGRO_MOUSE_EVENT *mouse);
+    bool Update(ALLEGRO_MOUSE_STATE *mouse);
 private:
     //Class Variables
     int m_xPosition;

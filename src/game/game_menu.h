@@ -2,6 +2,7 @@
 #define GAME_MENU_H
 
 #include "button.h"
+#include "globals.h"
 
 #include <QtCore/QString>
 #include <QList>
@@ -18,7 +19,7 @@ public:
     GameMenu();
 
     void Draw();
-    int Update(bool *keys, ALLEGRO_MOUSE_EVENT *mouse);
+    int Update(bool *keys, ALLEGRO_MOUSE_STATE *mouse);
 private:
     QList<Button*> m_buttons;
 };
